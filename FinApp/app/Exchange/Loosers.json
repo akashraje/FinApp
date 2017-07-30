@@ -1,7 +1,7 @@
 [
   {
     "exchangeId": "1",
-    "security": "Dr Reddys Labs",
+    "security": "Dr Reddys",
     "price": "2462.05",
     "change": "6.08"
   },
@@ -43,7 +43,7 @@
   },
   {
     "exchangeId": "2",
-    "security": "LT",
+    "security": "LT INFO",
     "price": "1158.45",
     "change": "2.10"
   },
@@ -67,7 +67,7 @@
   },
   {
     "exchangeId": "3",
-    "security": "3M",
+    "security": "3D PLM",
     "price": "199.72",
     "change": "0.16"
   },

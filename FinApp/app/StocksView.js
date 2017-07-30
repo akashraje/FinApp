@@ -78,6 +78,14 @@ const styles = StyleSheet.create({
   headerText: {
         textDecorationLine:'underline',
         fontWeight:'bold',
+    },
+    rowStyle: {
+        flexDirection:'row', 
+        padding:15,
+        justifyContent:'space-around'
+    },
+    evenRowStyle : {
+        backgroundColor:'#FBDAD3'
     }
 });
 
@@ -165,7 +173,7 @@ class ExchangeDetailView extends Component {
         const selected = this.props.navigation.state.params.name;
 
         return(
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, backgroundColor:'white'}}>
                 <SegmentedControlTab
                     values={this.segList}
                     selectedIndex={this.state.selectedIndex}
@@ -179,14 +187,21 @@ class ExchangeDetailView extends Component {
                     </View>
 
                      <ListView
+                        style={{paddingTop:20}}
                         removeClippedSubviews={false}
                         enableEmptySections={true} 
                         dataSource={this.state.dataSource}
-                        renderRow={(data) => <View style={{flexDirection:'row', justifyContent:'space-around', margin:15}}>
+                        renderRow={(data, sectionId, rowId) => {
+                                            let evenRow = rowId % 2 == 0;
+                                            return(
+                                                <View style={[styles.rowStyle, evenRow && styles.evenRowStyle]}>
                                                 <Text>{data.security}</Text>
                                                 <Text>{data.price}</Text>
                                                 <Text>{data.change}</Text>
-                                            </View>}
+                                            </View>
+                                            )
+                                        }
+                                }
                     /> 
 
                     <SegmentedControlTab

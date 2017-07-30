@@ -2,19 +2,19 @@
 [
   {
     "exchangeId": "1",
-    "security": "Reliance Capital",
+    "security": "Reliance",
     "price": "717.40",
     "change": "8.84"
   },
   {
     "exchangeId": "1",
-    "security": "JSW Energy",
+    "security": "Energy",
     "price": "77.05",
     "change": "8.2"
   },
   {
     "exchangeId": "1",
-    "security": "Reliance Capital",
+    "security": "Capital",
     "price": "717.40",
     "change": "7.84"
   },
@@ -26,7 +26,7 @@
   },
   {
     "exchangeId": "1",
-    "security": "Ashok Leyland",
+    "security": "Ashok",
     "price": "109.40",
     "change": "4.25"
   },
@@ -50,13 +50,13 @@
   },
   {
     "exchangeId": "2",
-    "security": "Kotak Mahindra Bank",
+    "security": "Kotak",
     "price": "1012.70",
     "change": "1.46"
   },
   {
     "exchangeId": "2",
-    "security": "Indiabulls Housing",
+    "security": "Indiabulls",
     "price": "1175.50",
     "change": "1.44"
   },
@@ -74,7 +74,7 @@
   },
   {
     "exchangeId": "3",
-    "security": "American Express",
+    "security": "American",
     "price": "84.80",
     "change": "1.13"
   },
