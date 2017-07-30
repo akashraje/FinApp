@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
-import ExchangeRow from './ExchangeRow/ExchangeRow';
-import ExchangeFile from './ExchangeRow/Exchange.json';
+import ExchangeRow from './Exchange/ExchangeRow';
+import ExchangeFile from './Exchange/Exchange.json';
 
 class ExchangeView extends Component {
 
