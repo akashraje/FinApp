@@ -11,9 +11,10 @@ import {
 import { StackNavigator } from 'react-navigation';
 import ExchangeRow from './Exchange/ExchangeRow';
 import ExchangeFile from './Exchange/Exchange.json';
+import GainersFile from './Exchange/Gainers.json';
+import LoosersFile from './Exchange/Loosers.json';
 
 import SegmentedControlTab from 'react-native-segmented-control-tab'
-
 
 class ExchangeView extends Component {
 
@@ -44,7 +45,7 @@ class ExchangeView extends Component {
 
   rowClicked(exchange) {
         console.log("Selected Exchange "+exchange.exchName);
-        this.props.navigation.navigate('ExchangeDetailView', {name: exchange.exchName});
+        this.props.navigation.navigate('ExchangeDetailView', {exchId: ExchangeIdMap[exchange.exchName]});
 }
 
     render() {
@@ -72,13 +73,19 @@ const styles = StyleSheet.create({
   header: {
       flexDirection:'row', 
       justifyContent:'space-around', 
-      paddingTop:20
+      paddingTop:20,
     },
   headerText: {
         textDecorationLine:'underline',
         fontWeight:'bold',
     }
 });
+
+const ExchangeIdMap = {
+    "BSE" : 1,
+    "NSE" : 2,
+    "Dow Jones" : 3
+}
 
 class ExchangeDetailView extends Component {
 
@@ -89,30 +96,74 @@ class ExchangeDetailView extends Component {
   constructor(props){
       super(props)
       this.segList = ['BSE', 'NSE', 'Dow Jones'];
+      this.gainLoseSegList = ['Gainers', 'Loosers'];
+      this.gainerList = GainersFile;
+      this.losersList = LoosersFile;
+      const dataList = [];
+      this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
+
       this.state = {
-        selectedIndex: this.getSelectedIndex(this.props.navigation.state.params.name),
+        dataList,
+        selectedIndex: this.props.navigation.state.params.exchId - 1,
+        gainLoseIndex: 0,
+        dataSource: this.ds.cloneWithRows(dataList),
       };
     }
 
-   handleIndexChange = (index) => {
-      this.setState({
-        selectedIndex: index,
-      });
-    }
-
-    getSelectedIndex(selected) {
-    var index;
-     this.segList.map((exchange, i) => {
-            if (exchange === selected) {
-                index = i;
+    getGainersList(index) {
+        console.log("Raw "+this.gainerList);
+        var dataList = [];
+        this.gainerList.map((stock) => {
+            if(stock.exchangeId == index + 1) {                
+                dataList.push(stock);
             }
         });
-        return index;
+        return dataList;
+    }
+
+    getLosersList(index) {
+        console.log(" Loosers Raw "+this.losersList);
+        var dataList = [];
+        this.losersList.map((stock) => {
+            if(stock.exchangeId == index + 1) {                
+                dataList.push(stock);
+            }
+        });
+        return dataList;
+    }
+
+    componentDidMount() {
+        
+        var dataList = this.getGainersList(this.state.selectedIndex);        
+    
+        console.log("Exact Gainers "+dataList);
+        this.setState({
+            dataList,
+            dataSource: this.ds.cloneWithRows(dataList)
+        });
+    }
+
+   handleIndexChange = (index) => {
+       dataList= this.state.gainLoseIndex ? this.getLosersList(index) : this.getGainersList(index) ;
+       this.setState({
+           dataList,
+           dataSource: this.ds.cloneWithRows(dataList),
+           selectedIndex: index,            
+      });      
+    }
+
+    handleGainLoseIndexChange = (index) => {
+        dataList= index ? this.getLosersList(this.state.selectedIndex) : this.getGainersList(this.state.selectedIndex);
+        this.setState({
+           dataList,
+           dataSource: this.ds.cloneWithRows(dataList),
+           gainLoseIndex: index,            
+      }); 
     }
 
     render() {
         const selected = this.props.navigation.state.params.name;
-        console.log("Selected "+this.getSelectedIndex(selected));
+
         return(
             <View style={{flex: 1}}>
                 <SegmentedControlTab
@@ -126,11 +177,26 @@ class ExchangeDetailView extends Component {
                         <Text style={styles.headerText}>Current Price</Text>
                         <Text style={styles.headerText}>% CHANGE</Text>
                     </View>
+
+                     <ListView
+                        removeClippedSubviews={false}
+                        enableEmptySections={true} 
+                        dataSource={this.state.dataSource}
+                        renderRow={(data) => <View style={{flexDirection:'row', justifyContent:'space-around', margin:15}}>
+                                                <Text>{data.security}</Text>
+                                                <Text>{data.price}</Text>
+                                                <Text>{data.change}</Text>
+                                            </View>}
+                    /> 
+
+                    <SegmentedControlTab
+                        values={this.gainLoseSegList}
+                        selectedIndex={this.state.gainLoseIndex}
+                        onTabPress={this.handleGainLoseIndexChange}
+                    />
             </View>
         )
     }
-
-    
 }
 
 const StocksView = StackNavigator({

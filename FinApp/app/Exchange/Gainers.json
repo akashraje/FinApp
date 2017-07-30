@@ -1,0 +1,93 @@
+
+[
+  {
+    "exchangeId": "1",
+    "security": "Reliance Capital",
+    "price": "717.40",
+    "change": "8.84"
+  },
+  {
+    "exchangeId": "1",
+    "security": "JSW Energy",
+    "price": "77.05",
+    "change": "8.2"
+  },
+  {
+    "exchangeId": "1",
+    "security": "Reliance Capital",
+    "price": "717.40",
+    "change": "7.84"
+  },
+  {
+    "exchangeId": "1",
+    "security": "Bank of India",
+    "price": "162.3",
+    "change": "7.20"
+  },
+  {
+    "exchangeId": "1",
+    "security": "Ashok Leyland",
+    "price": "109.40",
+    "change": "4.25"
+  },
+  {
+    "exchangeId": "2",
+    "security": "HDFC",
+    "price": "1785.35",
+    "change": "3.31"
+  },
+  {
+    "exchangeId": "2",
+    "security": "Yes Bank",
+    "price": "1841.85",
+    "change": "3.14"
+  },
+  {
+    "exchangeId": "2",
+    "security": "Infosys",
+    "price": "997.35",
+    "change": "2.71"
+  },
+  {
+    "exchangeId": "2",
+    "security": "Kotak Mahindra Bank",
+    "price": "1012.70",
+    "change": "1.46"
+  },
+  {
+    "exchangeId": "2",
+    "security": "Indiabulls Housing",
+    "price": "1175.50",
+    "change": "1.44"
+  },
+  {
+    "exchangeId": "3",
+    "security": "Chevron",
+    "price": "108.12",
+    "change": "1.89"
+  },
+  {
+    "exchangeId": "3",
+    "security": "UnitedHealth",
+    "price": "191.15",
+    "change": "1.18"
+  },
+  {
+    "exchangeId": "3",
+    "security": "American Express",
+    "price": "84.80",
+    "change": "1.13"
+  },
+  {
+    "exchangeId": "3",
+    "security": "Travelers",
+    "price": "127.21",
+    "change": "1.06"
+  },
+  {
+    "exchangeId": "3",
+    "security": "Intel",
+    "price": "35.31",
+    "change": "0.97"
+  }
+]

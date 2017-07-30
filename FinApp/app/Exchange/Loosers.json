@@ -1,0 +1,92 @@
+[
+  {
+    "exchangeId": "1",
+    "security": "Dr Reddys Labs",
+    "price": "2462.05",
+    "change": "6.08"
+  },
+  {
+    "exchangeId": "1",
+    "security": "Lupin",
+    "price": "1062.85",
+    "change": "4.34"
+  },
+  {
+    "exchangeId": "1",
+    "security": "Sun Pharma",
+    "price": "573.10",
+    "change": "3.89"
+  },
+  {
+    "exchangeId": "1",
+    "security": "ICICI Bank",
+    "price": "307.82",
+    "change": "3.60"
+  },
+  {
+    "exchangeId": "1",
+    "security": "Hero Motocorp",
+    "price": "3631.80",
+    "change": "2.04"
+  },
+  {
+    "exchangeId": "2",
+    "security": "INFRATEL",
+    "price": "399.65",
+    "change": "2.77"
+  },
+  {
+    "exchangeId": "2",
+    "security": "HINDALCO",
+    "price": "216.00",
+    "change": "2.37"
+  },
+  {
+    "exchangeId": "2",
+    "security": "LT",
+    "price": "1158.45",
+    "change": "2.10"
+  },
+  {
+    "exchangeId": "2",
+    "security": "VEDL",
+    "price": "274.37",
+    "change": "2.00"
+  },
+  {
+    "exchangeId": "2",
+    "security": "HINDUNILVR",
+    "price": "1150.00",
+    "change": "1.87"
+  },
+  {
+    "exchangeId": "3",
+    "security": "Caterpillar",
+    "price": "114.10",
+    "change": "0.24"
+  },
+  {
+    "exchangeId": "3",
+    "security": "3M",
+    "price": "199.72",
+    "change": "0.16"
+  },
+  {
+    "exchangeId": "3",
+    "security": "Microsoft",
+    "price": "73.04",
+    "change": "0.13"
+  },
+  {
+    "exchangeId": "3",
+    "security": "Cisco",
+    "price": "31.52",
+    "change": "0.1"
+  },
+  {
+    "exchangeId": "3",
+    "security": "Walt Disney",
+    "price": "109.97",
+    "change": "0.04"
+  }
+]
