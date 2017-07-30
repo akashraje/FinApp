@@ -1,19 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View,
         Text,
         StyleSheet,
-        Dimensions } from 'react-native';
+        Dimensions,
+        TouchableOpacity } from 'react-native';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+class ExchangeRow extends Component {
+
+    getArrow(gainLossData) {
+        return gainLossData.isGain ? 'long-arrow-up' : 'long-arrow-down' ;
+    }
+
+    getGainLossColor(gainLossData) {
+        return gainLossData.isGain ? 'green' : 'red';
+    }
+
+    render() {
+        console.log(this.props.ExchangeData);
+        const ExchangeData = this.props.ExchangeData;
+        return(
+            <TouchableOpacity style={styles.container}
+                onPress={() => this.props.onSelect(ExchangeData)}>
+                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                    <View>
+                        <Text style={styles.textStyle}>{ExchangeData.exchName}</Text>
+                        <Text style={{color:'gray',fontSize:10}}>{ExchangeData.dateTime}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.valueStyle}>{ExchangeData.value}</Text>
+                        <View style={{flexDirection:'row'}}>
+                            <Icon name= { this.getArrow(ExchangeData.gainLoss) }
+                                color={this.getGainLossColor(ExchangeData.gainLoss)}
+                                size={19}/>
+                            <Text 
+                                style={{color:this.getGainLossColor(ExchangeData.gainLoss), paddingLeft:5}}>
+                                    {ExchangeData.gainLoss.value}
+                            %</Text>
+                        </View>                        
+                    </View>
+                </View>
+
+                <Text style={styles.gainLoseStyle}>Gainers & Losers</Text>
+            </TouchableOpacity>
+        );
+    }
+
+    
+}
 
 
-const ExchangeRow = (props) => (
-    <View style={styles.container}>
-        <Text>Nifty</Text>
-        <Text>04.05 PM | 07 July 2017</Text>
-        <Text style={styles.value}>7634.17</Text>
-        <Text style={styles.value}>1.92%</Text>
-        <Text style={styles.gainloser}>Gainers & Losers</Text>
-    </View>
-);
+
+ExchangeRow.PropTypes = {
+    ExchangeData: React.PropTypes.any.isRequired
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -26,13 +67,27 @@ const styles = StyleSheet.create({
         shadowColor:'gray', 
         shadowOffset:{width:0, height:5},  
         shadowOpacity: 6,  
+        justifyContent:'space-between',
+        backgroundColor:'white',
     },
     value: {    
-        alignItems:'flex-start',
         alignSelf: 'flex-end',
     },
-    gainloser: {    
-        alignSelf:'flex-end',
+    textStyle: {
+        fontSize:20,
+        textDecorationLine:'underline',
+        color:'gray'
+    },
+    valueStyle: {
+        fontSize:20,
+        color:'gray'
+    },
+    gainLoseStyle: {
+        fontSize:18,
+        color:'#4A93D6',
+        textDecorationLine:'underline',
+        fontWeight:'bold',
+        alignSelf: 'flex-end',
     }
 
 });

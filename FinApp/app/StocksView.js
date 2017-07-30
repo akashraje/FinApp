@@ -10,6 +10,7 @@ import {
 
 import { StackNavigator } from 'react-navigation';
 import ExchangeRow from './ExchangeRow/ExchangeRow';
+import ExchangeFile from './ExchangeRow/Exchange.json';
 
 class ExchangeView extends Component {
 
@@ -17,23 +18,41 @@ class ExchangeView extends Component {
      title: 'Exchanges',
   }
 
-  constructor(props) {
-      super(props);
-
-      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
+  constructor() {
+      super();
+        const exchDataList = [];
+        this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
 
       this.state = {
-          dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+          exchDataList,
+          dataSource: this.ds.cloneWithRows(exchDataList),
       };
   }
 
+  componentDidMount() {
+    console.log("componentDidMount");
+    const exchDataList = ExchangeFile;
+    console.log(exchDataList);
+    this.setState({
+            exchDataList,
+            dataSource: this.ds.cloneWithRows(exchDataList)
+      });
+  }
+
+  rowClicked(exchange) {
+        console.log("Selected Exchange "+exchange.exchName);
+        this.props.navigation.navigate('ExchangeDetailView', {name: exchange.exchName});
+}
+
     render() {
         return(
-           <ListView
-                dataSource= {this.state.dataSource}
-                renderRow= { (data) => <ExchangeRow/>}    
-                
-            />
+            <View style={{flex:1, backgroundColor:'white'}}>
+                <ListView     
+                    enableEmptySections={true}           
+                    dataSource= {this.state.dataSource}
+                    renderRow= { (data) => <ExchangeRow ExchangeData={data} onSelect={this.rowClicked.bind(this)}/> }                    
+                />
+            </View>           
         )
     }
 }
@@ -57,14 +76,14 @@ class ExchangeDetailView extends Component {
 
     render() {
         return(
-            <Text> ExchangeDetailView</Text>
+            <Text> {this.props.navigation.state.params.name}</Text>
         )
     }
 }
 
 const StocksView = StackNavigator({
         ExchangeView : { screen: ExchangeView},
-        ExchangeDetailView : { screen: ExchangeDetailView}
+        ExchangeDetailView : { screen: ExchangeDetailView},        
 })
 
 export default StocksView;
